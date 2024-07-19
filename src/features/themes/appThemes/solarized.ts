@@ -1,7 +1,9 @@
 import { Theme, createTheme, responsiveFontSizes } from "@mui/material";
 import i18next from "i18next";
+import { baseTheme } from "./baseTheme";
 
 export const solarizedTheme: Theme = createTheme({
+  ...baseTheme,
   palette: {
     primary: {
       main: "#586e75", // Blue

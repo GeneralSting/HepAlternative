@@ -14,6 +14,19 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useTranslation } from "react-i18next";
 import { registrationPath } from "../../../routes";
+import isValidEmail from "../utils/validateEmail";
+
+type LoginForm = {
+  email: string;
+  password: string;
+};
+
+function getFormData<TForm>(
+  data: FormData,
+  key: keyof TForm
+): TForm[keyof TForm] {
+  return data.get(key as string) as TForm[keyof TForm];
+}
 
 const LoginForm = () => {
   const { t } = useTranslation();
@@ -21,10 +34,16 @@ const LoginForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    const loginFormData: LoginForm = {
+      email: getFormData<LoginForm>(data, "email"),
+      password: getFormData<LoginForm>(data, "password"),
+    };
+
+    console.log(isValidEmail(loginFormData.email));
+    console.log(loginFormData.password.length)
+
+    console.log(loginFormData);
   };
 
   return (

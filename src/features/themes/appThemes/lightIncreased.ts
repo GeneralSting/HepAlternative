@@ -1,7 +1,9 @@
 import { Theme, createTheme, responsiveFontSizes } from "@mui/material";
 import i18next from "i18next";
+import { baseTheme } from "./baseTheme";
 
 export const lightIncreasedTheme: Theme = createTheme({
+  ...baseTheme,
   palette: {
     background: {
       paper: "#f2f2f2",
@@ -11,32 +13,32 @@ export const lightIncreasedTheme: Theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Roboto', sans-serif", // Default font family
+    fontFamily: "'Roboto', sans-serif",
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     fontWeightBold: 700,
     h1: {
-      fontSize: "6rem",
+      fontSize: "2.625rem",
       fontWeight: 700,
     },
     h2: {
-      fontSize: "4rem",
-      fontWeight: 700,
-    },
-    h3: {
-      fontSize: "3.25rem",
-      fontWeight: 700,
-    },
-    h4: {
       fontSize: "2.25rem",
       fontWeight: 700,
     },
+    h3: {
+      fontSize: "2rem",
+      fontWeight: 700,
+    },
+    h4: {
+      fontSize: "1.875rem",
+      fontWeight: 700,
+    },
     h5: {
-      fontSize: "1.6rem",
+      fontSize: "1.75rem",
       fontWeight: 700,
     },
     h6: {
-      fontSize: "1.3rem",
+      fontSize: "1.625rem",
       fontWeight: 700,
     },
     subtitle1: {

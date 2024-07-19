@@ -1,7 +1,9 @@
 import { Theme, createTheme, responsiveFontSizes } from "@mui/material";
 import i18next from "i18next";
+import { baseTheme } from "./baseTheme";
 
 export const darkTheme: Theme = createTheme({
+  ...baseTheme,
   palette: {
     mode: "dark",
     background: {
