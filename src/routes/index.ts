@@ -1,3 +1,4 @@
 import appRoutes from "./AppRoutes";
+import { loginPath, registrationPath } from "./routesPath";
 
-export { appRoutes };
+export { appRoutes, registrationPath, loginPath };

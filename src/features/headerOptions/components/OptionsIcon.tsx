@@ -17,8 +17,8 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/storeHooks";
 import { setAppTheme, setLanguage } from "../data/optionsSlice";
 import { themes } from "../../themes";
-import { useTranslation } from "../../../../node_modules/react-i18next";
 import { languages } from "../../languages";
+import { useTranslation } from "react-i18next";
 
 const OptionsIcon = () => {
   const { t } = useTranslation();

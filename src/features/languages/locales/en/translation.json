@@ -5,16 +5,24 @@
     "abbr": "en",
     "localeAbbr": "en"
   },
+
   "languages": {
     "en": "English",
     "hr": "Croatian"
   },
+
   "themes": {
     "light": "Light Theme",
     "lightIncreased": "Light Theme Increased",
     "dark": "Dark Theme",
     "solarized": "Solarized Theme"
   },
+
+  "appData": {
+    "copyright": "Copyright © HepA",
+    "websiteLink": "https://github.com/GeneralSting/HepAlternative"
+  },
+
   "header": {
     "title": "HepA",
     "options": {
@@ -23,10 +31,23 @@
       "languageLabel": "Language"
     }
   },
+
   "main": {
     "hello": "Hello World"
   },
-  "footer": {
-    "message": "© Copyright HepA"
+
+  "form": {
+    "text": {
+      "login": "Sign In",
+      "register": "Sign Up",
+      "forgotPassword": "Forgot password?",
+      "registerLink": "Don't have an account? Sign Up"
+    },
+    "input": {
+      "emailInput": "Email Address",
+      "passwordInput": "Password",
+      "passwordConfirmInput": "Confirm Password",
+      "loginCheckbox": "Remember me"
+    }
   }
 }

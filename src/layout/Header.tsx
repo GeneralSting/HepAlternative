@@ -1,6 +1,6 @@
 import { AppBar, Grid, Toolbar, Typography } from "@mui/material";
 import { OptionsIcon } from "../features/headerOptions";
-import { useTranslation } from "../../node_modules/react-i18next";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const { t } = useTranslation();

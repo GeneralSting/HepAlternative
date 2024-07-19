@@ -5,16 +5,24 @@
     "abbr": "cro",
     "localeAbbr": "hr"
   },
+
   "languages": {
     "en": "Engleski",
     "hr": "Hrvatski"
   },
+
   "themes": {
     "light": "Svjetla Tema",
     "lightIncreased": "Svjetla Tema Povećano",
     "dark": "Tamna Tema",
     "solarized": "Solarizirana Tema"
   },
+
+  "appData": {
+    "copyright": "Autorska Prava © HepA",
+    "websiteLink": "https://github.com/GeneralSting/HepAlternative"
+  },
+
   "header": {
     "title": "HepA",
     "options": {
@@ -23,10 +31,23 @@
       "languageLabel": "Jezik"
     }
   },
+
   "main": {
     "hello": "Pozdrav svijete"
   },
-  "footer": {
-    "message": "© Autorsko pravo HepA"
+
+  "form": {
+    "text": {
+      "login": "Prijava",
+      "register": "Registracija",
+      "forgotPassword": "Lozinka zaboravljena?",
+      "registerLink": "Nemaš račun? Registriraj se"
+    },
+    "input": {
+      "emailInput": "Email Adresa",
+      "passwordInput": "Lozinka",
+      "passwordConfirmInput": "Potvrdi Lozinku",
+      "loginCheckbox": "Zapamti me"
+    }
   }
 }

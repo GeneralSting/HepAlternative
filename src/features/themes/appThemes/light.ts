@@ -10,6 +10,18 @@ export const lightTheme: Theme = createTheme({
       primary: "#111111",
     },
   },
+  components: {
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          color: "hsl(198, 58%, 43%)", // Default color when unchecked
+          "&.Mui-checked": {
+            color: "hsl(198, 58%, 43%)", // Color when checked
+          },
+        },
+      },
+    },
+  },
 });
 
 const light = responsiveFontSizes(lightTheme);
