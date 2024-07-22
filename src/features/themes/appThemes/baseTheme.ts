@@ -1,4 +1,4 @@
-import { createTheme, Theme } from '@mui/material/styles';
+import { createTheme, Theme } from "@mui/material/styles";
 
 export const baseTheme: Theme = createTheme({
   components: {
@@ -15,7 +15,21 @@ export const baseTheme: Theme = createTheme({
     MuiFormLabel: {
       styleOverrides: {
         asterisk: {
-          color: 'hsl(4, 88%, 58%)', 
+          color: "hsl(4, 88%, 58%)",
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          color: "hsl(4, 88%, 58%)",
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'hsl(198, 58%, 43%)',
         },
       },
     },

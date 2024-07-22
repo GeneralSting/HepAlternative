@@ -41,7 +41,10 @@
       "login": "Sign In",
       "register": "Sign Up",
       "forgotPassword": "Forgot password?",
-      "registerLink": "Don't have an account? Sign Up"
+      "registerLink": "Don't have an account? Sign Up",
+      "invalidEmail": "Invalid Email Address",
+      "invalidPassword": "Passwrod must have at least 8 characters",
+      "invalidConfirmPassword": "Passwords are not equal"
     },
     "input": {
       "emailInput": "Email Address",

@@ -15,35 +15,52 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useTranslation } from "react-i18next";
 import { registrationPath } from "../../../routes";
 import isValidEmail from "../utils/validateEmail";
-
-type LoginForm = {
-  email: string;
-  password: string;
-};
-
-function getFormData<TForm>(
-  data: FormData,
-  key: keyof TForm
-): TForm[keyof TForm] {
-  return data.get(key as string) as TForm[keyof TForm];
-}
+import { LoginForm as LoginFormType } from "../types/loginForm";
+import getFormData from "../utils/getFormData";
+import { useState } from "react";
 
 const LoginForm = () => {
   const { t } = useTranslation();
+
+  const [invalidEmail, setInvalidEmail] = useState<string | null>(null);
+  const [invalidPassword, setInvalidPassword] = useState<string | null>(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const loginFormData: LoginForm = {
-      email: getFormData<LoginForm>(data, "email"),
-      password: getFormData<LoginForm>(data, "password"),
+    const loginFormData: LoginFormType = {
+      email: getFormData<LoginFormType>(data, "email"),
+      password: getFormData<LoginFormType>(data, "password"),
+      remember: getFormData<LoginFormType>(data, "remember"),
     };
 
-    console.log(isValidEmail(loginFormData.email));
-    console.log(loginFormData.password.length)
+    if (checkFormValidation(loginFormData.email, loginFormData.password)) {
+      console.log("valid");
+    }
+  };
 
-    console.log(loginFormData);
+  const checkFormValidation = (
+    enteredEmail: string,
+    enteredPassword: string
+  ): boolean => {
+    // Email validation
+    if (!isValidEmail(enteredEmail)) {
+      setInvalidEmail(t("form.text.invalidEmail"));
+      return false;
+    } else {
+      setInvalidEmail(null);
+    }
+
+    // Password validation
+    if (enteredPassword.length < 8) {
+      setInvalidPassword(t("form.text.invalidPassword"));
+      return false;
+    } else {
+      setInvalidPassword(null);
+    }
+
+    return true;
   };
 
   return (
@@ -79,6 +96,7 @@ const LoginForm = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              helperText={invalidEmail ? invalidEmail : undefined}
             />
             <TextField
               margin="normal"
@@ -89,10 +107,12 @@ const LoginForm = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              helperText={invalidPassword ? invalidPassword : undefined}
             />
             <FormControlLabel
-              control={<Checkbox value="remember" />}
+              control={<Checkbox value="true" />}
               label={t("form.input.loginCheckbox")}
+              name="remember"
             />
             <Button
               type="submit"
@@ -116,7 +136,11 @@ const LoginForm = () => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href={registrationPath} variant="body2">
+                <Link
+                  href={registrationPath}
+                  variant="body2"
+                  className="energy-green"
+                >
                   {t("form.text.registerLink")}
                 </Link>
               </Grid>
