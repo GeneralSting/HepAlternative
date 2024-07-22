@@ -2,28 +2,36 @@ import {
   Avatar,
   Box,
   Button,
-  Checkbox,
   Container,
-  FormControlLabel,
   Grid,
   Link,
   Paper,
-  TextField,
   Typography,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useTranslation } from "react-i18next";
-import { registrationPath } from "../../../routes";
-import isValidEmail from "../utils/validateEmail";
+import { registrationPath } from "../../../../routes";
+import isValidEmail from "../../utils/validateEmail";
 import { LoginForm as LoginFormType } from "../types/loginForm";
-import getFormData from "../utils/getFormData";
-import { useState } from "react";
+import getFormData from "../../utils/getFormData";
+import { Fragment, useMemo, useState } from "react";
+import InputFactory from "../../components/InputFactory";
+import { FormInputType } from "../../types/formInputType";
 
 const LoginForm = () => {
   const { t } = useTranslation();
 
-  const [invalidEmail, setInvalidEmail] = useState<string | null>(null);
-  const [invalidPassword, setInvalidPassword] = useState<string | null>(null);
+  const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
+  const [invalidPassword, setInvalidPassword] = useState<boolean>(false);
+
+  const loginInputs = useMemo<FormInputType[]>(
+    () => [
+      { type: "email", invalid: invalidEmail },
+      { type: "password", invalid: invalidPassword },
+      { type: "checkbox" },
+    ],
+    [invalidEmail, invalidPassword]
+  );
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,18 +54,18 @@ const LoginForm = () => {
   ): boolean => {
     // Email validation
     if (!isValidEmail(enteredEmail)) {
-      setInvalidEmail(t("form.text.invalidEmail"));
+      setInvalidEmail(true);
       return false;
     } else {
-      setInvalidEmail(null);
+      setInvalidEmail(false);
     }
 
     // Password validation
     if (enteredPassword.length < 8) {
-      setInvalidPassword(t("form.text.invalidPassword"));
+      setInvalidPassword(true);
       return false;
     } else {
-      setInvalidPassword(null);
+      setInvalidPassword(false);
     }
 
     return true;
@@ -87,33 +95,12 @@ const LoginForm = () => {
             noValidate
             sx={{ mt: 1 }}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label={t("form.input.emailInput")}
-              name="email"
-              autoComplete="email"
-              autoFocus
-              helperText={invalidEmail ? invalidEmail : undefined}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label={t("form.input.passwordInput")}
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              helperText={invalidPassword ? invalidPassword : undefined}
-            />
-            <FormControlLabel
-              control={<Checkbox value="true" />}
-              label={t("form.input.loginCheckbox")}
-              name="remember"
-            />
+            {loginInputs.map((input, index) => (
+              <Fragment key={index}>
+                <InputFactory type={input.type} invalid={input.invalid} />
+              </Fragment>
+            ))}
+
             <Button
               type="submit"
               fullWidth

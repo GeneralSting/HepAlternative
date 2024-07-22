@@ -1,8 +1,13 @@
-import { LoginPage } from "../pages";
+import { LoginPage, RegistrationPage } from "../pages";
 import PageNotFound from "../pages/PageNotFound";
 import Welcome from "../pages/Welcome";
 import { AppRoute } from "../types/appRoute";
-import { loginPath, pageNotFoundPath, rootPath } from "./routesPath";
+import {
+  loginPath,
+  pageNotFoundPath,
+  registrationPath,
+  rootPath,
+} from "./routesPath";
 
 const appRoutes: AppRoute[] = [
   {
@@ -12,6 +17,10 @@ const appRoutes: AppRoute[] = [
   {
     path: loginPath,
     element: <LoginPage />,
+  },
+  {
+    path: registrationPath,
+    element: <RegistrationPage />,
   },
   {
     path: pageNotFoundPath,
