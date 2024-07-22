@@ -15,6 +15,9 @@ const EmailTextField: FC<TextFieldProps> = ({ label, helperText, disabled }) => 
       autoFocus
       helperText={helperText}
       disabled={disabled}
+      inputProps={{
+        maxLength: 64,
+      }}
     />
   );
 };

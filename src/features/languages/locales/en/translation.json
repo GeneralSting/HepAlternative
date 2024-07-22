@@ -42,11 +42,15 @@
       "register": "Sign Up",
       "forgotPassword": "Forgot password?",
       "registerLink": "Don't have an account? Sign Up",
+      "registrationCodeLink": "Learn more about a registration code",
+      "loginLink": "Have an account? Sign in",
       "invalidEmail": "Invalid Email Address",
-      "invalidPassword": "Passwrod must have at least 8 characters",
-      "invalidConfirmPassword": "Passwords are not equal"
+      "invalidPassword": "Password must have at least 8 characters",
+      "invalidConfirmPassword": "Passwords are not equal",
+      "invalidRegistrationCode": "Registration code is not correct"
     },
     "input": {
+      "registrationCode": "Registration Code",
       "emailInput": "Email Address",
       "passwordInput": "Password",
       "passwordConfirmInput": "Confirm Password",

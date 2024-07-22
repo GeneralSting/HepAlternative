@@ -41,12 +41,16 @@
       "login": "Prijava",
       "register": "Registracija",
       "forgotPassword": "Lozinka zaboravljena?",
+      "registrationCodeLink": "Saznajte više o registracijskom kodu",
       "registerLink": "Nemaš račun? Registriraj se",
+      "loginLink": "Imaš račun? Prijavi se",
       "invalidEmail": "Neispravna Email adresa",
       "invalidPassword": "Lozinka mora imati najmanje 8 znakova",
-      "invalidConfirmPassword": "Lozinke nisu jednake"
+      "invalidConfirmPassword": "Lozinke nisu jednake",
+      "invalidRegistrationCode": "Neispravan registracijski kod"
     },
     "input": {
+      "registrationCode": "Registracijski Kod",
       "emailInput": "Email Adresa",
       "passwordInput": "Lozinka",
       "passwordConfirmInput": "Potvrdi Lozinku",
