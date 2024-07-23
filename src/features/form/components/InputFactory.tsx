@@ -14,6 +14,7 @@ const InputFactory: FC<FormInputType> = ({ type, invalid, disabled }) => {
       return (
         <EmailTextField
           label={t("form.input.emailInput")}
+          name="email"
           helperText={invalid && t("form.text.invalidEmail")}
           disabled={disabled}
         />
@@ -23,6 +24,7 @@ const InputFactory: FC<FormInputType> = ({ type, invalid, disabled }) => {
       return (
         <PasswordTextField
           label={t("form.input.passwordInput")}
+          name="password"
           helperText={invalid && t("form.text.invalidPassword")}
           disabled={disabled}
         />
@@ -31,6 +33,7 @@ const InputFactory: FC<FormInputType> = ({ type, invalid, disabled }) => {
     case "confirmPassword": {
       return (
         <PasswordTextField
+          name="confirmPassword"
           label={t("form.input.passwordConfirmInput")}
           helperText={invalid && t("form.text.invalidConfirmPassword")}
           disabled={disabled}
@@ -41,13 +44,19 @@ const InputFactory: FC<FormInputType> = ({ type, invalid, disabled }) => {
       return (
         <TogglePasswordTextField
           label={t("form.input.registrationCode")}
+          name="registrationCode"
           helperText={invalid && t("form.text.invalidRegistrationCode")}
           disabled={disabled}
         />
       );
     }
     case "checkbox": {
-      return <CheckboxField label={t("form.input.loginCheckbox")} />;
+      return (
+        <CheckboxField
+          label={t("form.input.loginCheckbox")}
+          name="cbRemember"
+        />
+      );
     }
     default: {
       throw new Error(`Unknown input type: ${type}`);

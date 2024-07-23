@@ -4,6 +4,7 @@ import { TextFieldProps } from "../../types/textFieldProps";
 
 const PasswordTextField: FC<TextFieldProps> = ({
   label,
+  name,
   helperText,
   disabled,
 }) => {
@@ -12,7 +13,7 @@ const PasswordTextField: FC<TextFieldProps> = ({
       margin="normal"
       required
       fullWidth
-      name="password"
+      name={name}
       label={label}
       type="password"
       id="password"

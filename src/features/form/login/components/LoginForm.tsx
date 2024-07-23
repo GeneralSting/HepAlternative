@@ -40,8 +40,10 @@ const LoginForm = () => {
     const loginFormData: LoginFormType = {
       email: getFormData<LoginFormType>(data, "email"),
       password: getFormData<LoginFormType>(data, "password"),
-      remember: getFormData<LoginFormType>(data, "remember"),
+      cbRemember: getFormData<LoginFormType>(data, "cbRemember"),
     };
+
+    // TODO: implement login backend code validation
 
     if (checkFormValidation(loginFormData.email, loginFormData.password)) {
       console.log("valid");

@@ -7,6 +7,7 @@ const TogglePasswordTextField: FC<TextFieldProps> = ({
   label,
   helperText,
   disabled,
+  name
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -23,7 +24,7 @@ const TogglePasswordTextField: FC<TextFieldProps> = ({
       margin="normal"
       required
       fullWidth
-      name="password"
+      name={name}
       label={label}
       type={showPassword ? "text" : "password"}
       id="password"
@@ -31,6 +32,7 @@ const TogglePasswordTextField: FC<TextFieldProps> = ({
       helperText={helperText}
       disabled={disabled}
       autoFocus
+      sx={{marginBottom: "2rem"}}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">

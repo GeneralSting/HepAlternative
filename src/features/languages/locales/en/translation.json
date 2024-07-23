@@ -40,6 +40,7 @@
     "text": {
       "login": "Sign In",
       "register": "Sign Up",
+      "checkRegistrationCode": "Registration Code Validation",
       "forgotPassword": "Forgot password?",
       "registerLink": "Don't have an account? Sign Up",
       "registrationCodeLink": "Learn more about a registration code",

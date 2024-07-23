@@ -1,9 +1,8 @@
-import { Fragment, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { FormInputType } from "../../types/formInputType";
 import { useTranslation } from "react-i18next";
 import { RegistrationForm as RegistrationFormType } from "../types/registrationForm";
 import getFormData from "../../utils/getFormData";
-import isValidEmail from "../../utils/validateEmail";
 import {
   Avatar,
   Box,
@@ -18,69 +17,60 @@ import InputFactory from "../../components/InputFactory";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import { RegistrationInputProps } from "../types/registrationInputProps";
 import { loginPath, rootRegCodePath } from "../../../../routes";
+import { RegistrationInputType } from "../types/registrationInputType";
+import initializeInputState from "../utils/initializeInputState";
+import registrationValidation from "../utils/registrationValidation";
 
 const RegistartionForm = () => {
   const { t } = useTranslation();
 
-  const [invalidRegistrationCode, setInvalidRegistrationCode] =
-    useState<RegistrationInputProps>({
-      disabled: false,
-      invalid: false,
-    });
-  const [invalidEmail, setInvalidEmail] = useState<RegistrationInputProps>({
-    disabled: true,
-    invalid: false,
+  const [firstStep, setFirstStep] = useState<boolean>(true);
+  const [registrationForm, setRegistrationForm] = useState<
+    Record<RegistrationInputType, RegistrationInputProps>
+  >({
+    togglePassword: initializeInputState(false, false),
+    email: initializeInputState(true, false),
+    password: initializeInputState(true, false),
+    confirmPassword: initializeInputState(true, false),
   });
-  const [invalidPassword, setInvalidPassword] =
-    useState<RegistrationInputProps>({
-      disabled: true,
-      invalid: false,
-    });
-  const [invalidConfirmPassword, setInvalidConfirmPassword] =
-    useState<RegistrationInputProps>({
-      disabled: true,
-      invalid: false,
-    });
 
   const registrationInputs = useMemo<FormInputType[]>(
-    () => [
-      {
-        type: "togglePassword",
-        invalid: invalidRegistrationCode.invalid,
-        disabled: invalidRegistrationCode.disabled,
-      },
-      {
-        type: "email",
-        invalid: invalidEmail.invalid,
-        disabled: invalidEmail.disabled,
-      },
-      {
-        type: "password",
-        invalid: invalidPassword.invalid,
-        disabled: invalidPassword.disabled,
-      },
-      {
-        type: "confirmPassword",
-        invalid: invalidConfirmPassword.invalid,
-        disabled: invalidPassword.disabled,
-      },
-    ],
-    [
-      invalidConfirmPassword.invalid,
-      invalidEmail.disabled,
-      invalidEmail.invalid,
-      invalidPassword.disabled,
-      invalidPassword.invalid,
-      invalidRegistrationCode.disabled,
-      invalidRegistrationCode.invalid,
-    ]
+    () =>
+      Object.keys(registrationForm).map((key) => ({
+        type: key as RegistrationInputType,
+        invalid: registrationForm[key as RegistrationInputType].invalid,
+        disabled: registrationForm[key as RegistrationInputType].disabled,
+      })),
+    [registrationForm]
   );
+
+  const updateRegistrationForm = (
+    updates: Partial<
+      Record<RegistrationInputType, Partial<RegistrationInputProps>>
+    >
+  ) => {
+    setRegistrationForm((prevForm) => {
+      const updatedForm = { ...prevForm };
+
+      for (const [field, properties] of Object.entries(updates) as [
+        RegistrationInputType,
+        Partial<RegistrationInputProps>
+      ][]) {
+        updatedForm[field] = {
+          ...prevForm[field],
+          ...properties,
+        };
+      }
+
+      return updatedForm;
+    });
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const loginFormData: RegistrationFormType = {
+    const registrationFormData: RegistrationFormType = {
       registrationCode: getFormData<RegistrationFormType>(
         data,
         "registrationCode"
@@ -93,35 +83,17 @@ const RegistartionForm = () => {
       ),
     };
 
-    console.log(loginFormData);
-
-    // if (checkFormValidation(loginFormData.email, loginFormData.password)) {
-    //   console.log("valid");
-    // }
+    updateRegistrationForm(
+      registrationValidation(firstStep, registrationFormData)
+    );
+    // TODO: implement registration backend code validation
   };
 
-  const checkFormValidation = (
-    enteredEmail: string,
-    enteredPassword: string
-  ): boolean => {
-    // Email validation
-    if (!isValidEmail(enteredEmail)) {
-      setInvalidEmail(true);
-      return false;
-    } else {
-      setInvalidEmail(false);
+  useEffect(() => {
+    if (registrationForm.togglePassword.disabled === true) {
+      setFirstStep(false);
     }
-
-    // Password validation
-    if (enteredPassword.length < 8) {
-      setInvalidPassword(true);
-      return false;
-    } else {
-      setInvalidPassword(false);
-    }
-
-    return true;
-  };
+  }, [registrationForm.togglePassword.disabled]);
 
   return (
     <Container component="main" maxWidth="sm">
@@ -156,7 +128,6 @@ const RegistartionForm = () => {
                 />
               </Fragment>
             ))}
-
             <Button
               type="submit"
               fullWidth
@@ -170,11 +141,18 @@ const RegistartionForm = () => {
                 },
               }}
             >
-              {t("form.text.register")}
+              {firstStep
+                ? t("form.text.checkRegistrationCode")
+                : t("form.text.register")}
             </Button>
+
             <Grid container>
               <Grid item xs>
-                <Link href={rootRegCodePath} variant="body2" className="energy-green">
+                <Link
+                  href={rootRegCodePath}
+                  variant="body2"
+                  className="energy-green"
+                >
                   {t("form.text.registrationCodeLink")}
                 </Link>
               </Grid>

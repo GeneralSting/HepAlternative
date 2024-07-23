@@ -1,12 +1,7 @@
+import { InputType } from "./inputType";
+
 export type FormInputType = {
-  type:
-    | "text"
-    | "number"
-    | "email"
-    | "password"
-    | "confirmPassword"
-    | "togglePassword"
-    | "checkbox";
+  type: InputType;
   invalid?: boolean;
   disabled?: boolean;
 };

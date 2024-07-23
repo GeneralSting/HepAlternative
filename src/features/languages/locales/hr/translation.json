@@ -40,6 +40,7 @@
     "text": {
       "login": "Prijava",
       "register": "Registracija",
+      "checkRegistrationCode": "Provjera Reg. Koda",
       "forgotPassword": "Lozinka zaboravljena?",
       "registrationCodeLink": "Saznajte više o registracijskom kodu",
       "registerLink": "Nemaš račun? Registriraj se",
