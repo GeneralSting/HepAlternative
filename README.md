@@ -1,102 +1,70 @@
-# RAT - React App Template
+# HepA - HepAlternative
 
-## Template based on React and TypeScript
+- HepAlternative is a refactored version of the [PIN-Elektra project](https://github.com/GeneralSting/PIN-Elektra). The application is designed to provide an improved user experience and a more efficient backend for managing data. This project is currently a work in progress.
 
-### Description
+## Table of Contents
 
-- This app or rather a template is the initial structure which can be used for app creation
-- avoid setting up the project from scratch again. Get straight to the heart of the application by bypassing the initial steps needed when starting a new project
-- template contains initial:
-  1. website layout :white_check_mark:
-  2. folder structure :white_check_mark:
-  3. logic that can be easily adapted :white_check_mark:
-- the template is not universal and is not intended for all react applications because certain technologies are used that will not be suitable for your project :heavy_exclamation_mark:
+- [Introduction](#introduction)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+  - [Prerequisites](#prerequisites)
+  - [Steps](#steps)
+- [API Documentation](#api-documentation)
 
-### Technologies
+## Introduction
 
-1. [**MUI**](https://mui.com) The React component library
-   - creating website layout
-   - grid view of components
-   - creating themes
-2. [**i18next**](https://www.i18next.com/): Internationalization-framework written in and for JavaScript
-   - i18next initialization
-   - creating translations
-   - non-components translated (.ts files)
-3. [**Redux**](https://react-redux.js.org/): Library for managing and centralizing application state
-   - used to store simple values
-   - real potential can be used in the further development of the project
-4. [**React Router**](https://reactrouter.com/en/main): "Client side routing"
+- This application is designed as an information system for managing electricity consumption, focusing on managing customers, items, and creating invoices. It enables customer administration by adding, updating and deleting data, while ensuring the uniqueness of the customer code and the meter. The system supports the creation of an invoice, where the user can select the customer, items and enter the quantity to generate the invoice. Accounts can be reversed, and canceled accounts are not shown in the overview or statistics. The application also allows users to view the invoices created for their registered meters.
 
-### Functionality
+## Features
 
-#### Architecture
+- User Authentication (Login/Registration) :white_check_mark:
+- Admin Workspace (In Development) :construction:
+- Customer Information Management (In Development) :construction:
 
-- **@types**: type-safe translations i18next for TypeScript
-- **components**: global shared components
-- **features**: This folder contains the core functionalities and distinct features of the project. Each feature folder represents a specific aspect or capability of the application, encapsulating related components, logic, and resources.
-  - **headerOptions**: logic contained on app's header. Change user preferences - theme and translation
-  - **languages**: languages/translations that app support
-  - **themes**: themes that app support
-- **hooks**: global shared hooks
-- **layout**: fixed layouts of website
-- **models**: global shared models
-- **pages**: main content
-- **routes**: pages routes
-- **service**: main api service, api service extends default abstract api class
-- **types**: global shared types
-- **utils**: global shared utils funcitons
+## Tech Stack
 
-[more about react project folder structure](https://github.com/GeneralSting/Frontend-documentation/blob/main/React/React%20folder%20structure.md)
+- **Frontend:** React, Typescript (Redux, MUI, i18next)
+- **Backend:** [API - HepAPI](https://github.com/GeneralSting/HepAlternative-API) (PHP)
+- **Database:** MySQL
 
-#### Layout
+## Installation
 
-- app has basic layout with header and footer components fixed, part which changes is main content represented as pages
-- app layout supported via **MUI grid**
+### Prerequisites
 
-#### Themes
+- Node.js and npm installed
+- PHP installed
+- MySQL installed
 
-- there are four themes, it is possible to create new themes following the creation structure
-  - create theme using MUI **createTheme** function
-  - theme requires:
-    - code (abbreviation) as the represented value of the theme
-    - name, multiple names for each **.json translation file**
-    - the theme itself **MUI Theme type**
-  - add theme to the theme objects array with specified parameters
+### Steps
 
-#### Translations
+1. **Clone the repository**
 
-- two translations are supported by default - english and croatian
-- create new translation:
-  - create **.json translation file**
-    - follow the existing format
-    - it's essential to adhere to the key-value pairs defined in previous .json translation files, as new translations should align with the existing structure
-    - update the previous .json files to incorporate the new translations. This ensures that the new language/translation is seamlessly integrated, maintaining consistency across all supported languages
-  - update locales object which is needed for **i18next Resource type initialization**. Provide correct translation code/abbreviation and created .json file with translations
+```sh
+git clone https://github.com/GeneralSting/HepAlternative.git
+```
 
-#### Redux
+2. **Install dependencies**
 
-- **store.ts** is set up for the Redux store for the application by configuring reducers and middleware using **configureStore**. Reducer contains created slices
-- Redux slices - encapsulates the logic for managing application options, providing action creators and reducers to update the state and persist changes to browser storage. Create new slice and import it into reducer inside store.ts
-- adjusted approach is used in TypeScript to provide type safety when using Redux hooks **useDispatch** and **useSelector**
+```sh
+cd HepAlternative
+npm install
+```
 
----
+3. **Set up the backend API:**
 
-### Project
+- Follow the instructions provided in the HepAlternative-API repository to set up the API.
 
-1. Git Clone
+4. **Configure the database:**
 
-   - `git clone https://github.com/GeneralSting/React-App-Template`
+- Ensure MySQL is set up and configured as described in the API's repository.
 
-2. Install Dependencies:
+5. **Run the application:**
 
-   - `npm install`
+```sh
+npm run dev
+```
 
-3. Build the Application:
+## API Documentation
 
-   - `npm run build`
-
-4. Start the Development Server:
-
-   - `npm run dev`
-
-5. Good Luck :wink:
+The API documentation is available in the [HepAlternative-API repository](https://github.com/GeneralSting/HepAlternative-API). It provides endpoints for user authentication, data management, and more.
